@@ -1,8 +1,12 @@
 package tests;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -19,19 +23,17 @@ public class StudentRegistrationFormWithJavaFaker {
     @Test
     void fillFormTest() {
         Faker faker = new Faker();
-        FakeValueService fakeValueService = new favkeValueService(
-                new locale("en-GB"), new RandomService());
-        String varFirstName = faker.name().varFirstName();
-        String varLastName = faker.name().varLastName();
-        String varUserEmai; = fakeValuesService.bothify("????##@gmail.com");
-        String varUserNumber = fakeValueService.regexify("[0-9]{10}");
-        String varCurrentAddress = faker.address().varCurrentAddress();
+        FakeValuesService fakeValuesService = new FakeValuesService(
+                new Locale("en-GB"), new RandomService());
+        String varFirstName = faker.name().firstName();
+        String varLastName = faker.name().lastName();
+        String varUserEmail = fakeValuesService.bothify("????##@gmail.com");
+        String varUserNumber = fakeValuesService.regexify("[0-9]{10}");
+        String varCurrentAddress = faker.address().fullAddress();
 
-        String varFirstName = "Stanislav",
-                varLastName = "Dmitruk",
-                varUserEmail = "stanislavtest@gmail.com",
+        String
+
                 varGender = "Other",
-                varUserNumber = "1234567890",
                 varBirthDay = "20",
                 varBirthMonth = "February",
                 varBirthYear = "1991",
@@ -44,7 +46,6 @@ public class StudentRegistrationFormWithJavaFaker {
                 varHobby1 = "Sports",
                 varHobby2 = "Music",
                 varPicture = "Screenshot 2020-11-20 at 02.47.53.png",
-                varCurrentAddress = "Tester Strasse 123, Berlin",
                 varState = "Haryana",
                 varCity = "Panipat";
 
@@ -95,6 +96,6 @@ public class StudentRegistrationFormWithJavaFaker {
         $x("//td[text()='Picture']").parent().shouldHave(text(varPicture));
         $x("//td[text()='Address']").parent().shouldHave(text(varCurrentAddress));
         $x("//td[text()='State and City']").parent().shouldHave(text(varState + " " + varCity));
-
+        $x("//td[text()='State and City']").parent().shouldHave(text(varState + " " + varCity));
     }
 }
