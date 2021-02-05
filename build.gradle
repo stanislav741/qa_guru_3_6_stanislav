@@ -18,6 +18,8 @@ dependencies {
 
     implementation 'com.github.javafaker:javafaker:1.0.2'
 
+    compile("com.browserup:browserup-proxy-core:2.1.2")
+
 }
 
 test {
